@@ -4,6 +4,8 @@ import './App.css';
 
 import {connect} from 'react-redux'
 
+import { bindActionCreators } from "redux";
+
 import { updateUser } from './actions/actions.js'
 class App extends Component {
 
@@ -41,8 +43,16 @@ const mapStateToProps = function(state) {
   return state;
 }
 
-const mapActionToProps = {
-  onUpdateUser : updateUser
+const mapActionToProps = (dispatch , props) => {
+  return bindActionCreators({
+    onUpdateUser : updateUser
+
+  }, dispatch)  
+
+}
+
+const mergeProps= (propsfromState , propsFromDispatch, ownProps)=>{
+   
 }
 
 export default connect(mapStateToProps , mapActionToProps)(App);
